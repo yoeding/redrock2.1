@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" type="text/css">
+<script>
+const getJSON = function(url) {
+        const promise = new Promise(function(resolve, reject){
+          const handler = function() {
+            if (this.readyState !== 4) {
+              return;
+              }
+              if (this.status === 200) {
+      	        console.log(this.response);
+                resolve(this.response);
+                } else {
+                  reject(new Error(this.statusText));
+                  }
+                  };
+                  const client = new XMLHttpRequest();
+                  client.open("GET", url);
+                  client.onreadystatechange = handler;
+                  client.setRequestHeader("Accept", "application/json");
+                  client.send();
+                  });
+                  return promise;
+                  };
+
+                  
+getJSON("https://www.easy-mock.com/mock/5c10f445be3cc90fa1b170b9/example/request").then(function(json) {
+  console.log('Contents: ' + json.code);
+}, function(error) {
+  console.error('出错了', error);
+});
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</head>
+<body>
+   
+
+
+ 
+
+
+
+</body>
+</html>
